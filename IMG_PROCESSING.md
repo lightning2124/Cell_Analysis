@@ -9,22 +9,29 @@ The preprocessing pipeline applies various computer vision techniques to extract
 ## Preprocessing Steps
 
 ### 1. Image Loading and Conversion
-
 - Load the image using OpenCV.
 - Convert the image to grayscale.
+
+![grayscale](img_processing_steps/1_grayscale.png)
 
 ### 2. Gamma Correction
 
 - Apply gamma correction to enhance image contrast.
 - Gamma value: 1.5 (adjustable).
 
+![gamma](img_processing_steps/2_gamma.png)
+
 ### 3. Noise Reduction
 
 - Apply Gaussian blur with a kernel size of 15x15 for noise reduction.
 
+![gaussian](img_processing_steps/3_gaussian.png)
+
 ### 4. Thresholding
 
 - Use Otsu's method for adaptive thresholding to create a binary image with inverted colors.
+
+ ![binary](img_processing_steps/4_binthresh.png) 
 
 ### 5. Edge Detection and Smoothing
 
@@ -32,18 +39,28 @@ The preprocessing pipeline applies various computer vision techniques to extract
 - Apply adaptive thresholding to extract edges.
 - Sharpen edges using erosion and dilation.
 
+![horizontalEdge](img_processing_steps/5a_hedge.png)
+![verticalEdge](img_processing_steps/5b_vedge.png)
+
+
 ### 6. Line Detection
 
 - Use Hough Transform to detect horizontal and vertical lines.
 - Parameters:
   - Minimum line length: 200 pixels.
   - Maximum line gap: 50 pixels.
+ 
+![overlay](img_processing_steps/6_overlay.png)
 
 ### 7. Line Coordinate Extraction
 
 - Process detected lines to extract coordinates.
 - Group lines into top, middle, and bottom sections.
 - Use K-means clustering to refine line positions.
+
+![top](img_processing_steps/7a_top.png)
+![mid](img_processing_steps/7b_middle.png)
+![bottom](img_processing_steps/7c_bottom.png)
 
 ### 8. Grid Identification and Cropping
 
@@ -69,9 +86,13 @@ After detecting horizontal and vertical lines, the script identifies a 2x2 grid 
 6. **Output Generation**:
    - Save each processed quadrant image with a naming convention: `original_filename_[A/B/C/D].jpg`.
 
+![finalOverlay](img_processing_steps/8_lineCoords.png)
+
 ### 9. Visualization
 
 - Plot the four cropped and processed images for visual verification.
+
+![output](img_processing_steps/9_output.png)
 
 ## Key Functions
 
